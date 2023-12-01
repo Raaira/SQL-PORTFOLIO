@@ -15,6 +15,15 @@ select location, date, total_cases, new_cases, total_deaths, population
 FROM [PORTFOLIO PROJECT].dbo.[CovidDeathsResearch$]
 ORDER BY 1,2
 
+SELECT date, CONVERT(date,date) DateConverted
+FROM [PORTFOLIO PROJECT].dbo.[CovidDeathsResearch$]
+
+ALTER TABLE [PORTFOLIO PROJECT].dbo.[CovidDeathsResearch$]
+ADD DateConverted DATE;
+
+UPDATE [PORTFOLIO PROJECT].dbo.[CovidDeathsResearch$]
+SET DateConverted = CONVERT(date,date)
+
 
 --WHAT IS THE DEATH PERCENTAGE?
 
@@ -126,4 +135,10 @@ New_Vaccination numeric, CummulativeSumOfNewVaccinations numeric)
 
 SELECT *, (CummulativeSumOfNewVaccinations/Population)*100 as PercentPopulationVaccinated
 FROM #PercentPopulationVaccinated
+
+
+
+
+SELECT *
+FROM [PORTFOLIO PROJECT].dbo.[CovidDeathsResearch$]
 
